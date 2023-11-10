@@ -2,10 +2,9 @@
 #include <iostream>
 #include <string>
 
-typedef std::string string;
+#include "urls.hpp"
 
-// static const string BASE_URL = "https://tryhackme.com/room/professorkurzsheatpump/api/";
-static const string BASE_URL = "https://tryhackme.com/room/professorkurzsheatpump/";
+typedef std::string string;
 
 size_t WriteCallback(char *contents, size_t size, size_t nmemb, void *userp)
 {
@@ -13,12 +12,9 @@ size_t WriteCallback(char *contents, size_t size, size_t nmemb, void *userp)
     return size * nmemb;
 }
 
-int main() {
+string get_response(const string& url) {
     CURL *curl;
     CURLcode res;
-    // string url = BASE_URL + "invoices";
-    string url = BASE_URL + "";
-
     string body;
 
     curl = curl_easy_init();
@@ -32,13 +28,25 @@ int main() {
         }
         curl_easy_cleanup(curl);
     }
-    
-    std::cout << "Website responded (" << body.size() << " bytes)" << std::endl;
-    if (body.size() > 100) {
-        std::cout << body.substr(0, 100) << "..." << std::endl;
-    } else {
-        std::cout << body << std::endl;
-    }
+    return body;
+}
 
+void print_response(const string& response) {
+    std::cout << "Website responded (" << response.size() << " bytes)" << std::endl;
+    if (response.size() > 100) {
+        std::cout << response.substr(0, 100) << "..." << std::endl;
+    } else {
+        std::cout << response << std::endl;
+    }
+}
+
+int main(const char* argv[], int argc) {
+    // TODO: Check syntax
+    // Syntax: ./heat-pump <heatpump uuid> <api key>
+
+    string url = BASE_URL + "";
+    string response = get_response(url);
+
+    print_response(response);
     return 0;
 }
