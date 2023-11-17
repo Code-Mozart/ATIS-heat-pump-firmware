@@ -15,7 +15,7 @@ DEPENDENCIES = curl
 source_files := $(shell find . -type f -iname '*.cpp')
 object_files := $(patsubst ./src/%,$(INTERMEDIATE_DIR)/%,$(source_files:.cpp=.o))
 
-COMPILER_FLAGS = -std=$(CPP_VERSION) -stdlib=libc++ -Wall -Wextra -Werror -Wpedantic
+COMPILER_FLAGS = -std=$(CPP_VERSION) -stdlib=libc++ -Wall -Wextra -Werror -Wpedantic -Iinclude
 
 debug:
 	@echo All sources: $(source_files)
@@ -34,7 +34,7 @@ link: clean-output
 build: compile link
 
 run: build
-	@$(OUTPUT_DIR)/$(NAME)
+	@$(OUTPUT_DIR)/$(NAME) x x
 
 # Clean
 
