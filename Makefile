@@ -6,6 +6,11 @@ OUTPUT_DIR = output/bin
 
 CPP_VERSION = c++17
 
+# Arguments
+
+MAC_ADDRESS = 00:00:00:00:00:00
+API_KEY_FILE_PATH = ./token
+
 # Dependencies
 
 DEPENDENCIES = curl
@@ -16,6 +21,7 @@ source_files := $(shell find . -type f -iname '*.cpp')
 object_files := $(patsubst ./src/%,$(INTERMEDIATE_DIR)/%,$(source_files:.cpp=.o))
 
 COMPILER_FLAGS = -std=$(CPP_VERSION) -stdlib=libc++ -Wall -Wextra -Werror -Wpedantic -Iinclude
+ARGS = $(MAC_ADDRESS) $(API_KEY_FILE_PATH)
 
 debug:
 	@echo All sources: $(source_files)
@@ -34,7 +40,7 @@ link: clean-output
 build: compile link
 
 run: build
-	@$(OUTPUT_DIR)/$(NAME) x x
+	@$(OUTPUT_DIR)/$(NAME) $(ARGS)
 
 # Clean
 
