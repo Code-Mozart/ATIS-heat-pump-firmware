@@ -20,7 +20,7 @@ DEPENDENCIES = curl
 source_files := $(shell find . -type f -iname '*.cpp')
 object_files := $(patsubst ./src/%,$(INTERMEDIATE_DIR)/%,$(source_files:.cpp=.o))
 
-COMPILER_FLAGS = -Wall -Wextra -Werror -Wpedantic -Iinclude
+COMPILER_FLAGS = -Wall -Wextra -Werror -Wpedantic -Iinclude -std=c++11
 ARGS = $(MAC_ADDRESS) $(API_KEY_FILE_PATH)
 
 debug:
