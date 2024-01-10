@@ -11,7 +11,7 @@ struct heatpump
 {
     string ip;
     string mac;
-    customer customer;
+    ::customer customer;
 
     float desired_temperature;
     float desired_humidity;

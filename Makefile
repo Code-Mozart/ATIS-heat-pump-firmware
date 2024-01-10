@@ -20,7 +20,7 @@ DEPENDENCIES = curl
 source_files := $(shell find . -type f -iname '*.cpp')
 object_files := $(patsubst ./src/%,$(INTERMEDIATE_DIR)/%,$(source_files:.cpp=.o))
 
-COMPILER_FLAGS = -std=$(CPP_VERSION) -stdlib=libc++ -Wall -Wextra -Werror -Wpedantic -Iinclude
+COMPILER_FLAGS = -Wall -Wextra -Werror -Wpedantic -Iinclude
 ARGS = $(MAC_ADDRESS) $(API_KEY_FILE_PATH)
 
 debug:
@@ -29,13 +29,13 @@ debug:
 
 $(INTERMEDIATE_DIR)/%.o: src/%.cpp
 	@mkdir -p $(dir $@)
-	@clang++ $(COMPILER_FLAGS) -c $< -o $@
+	@g++ $(COMPILER_FLAGS) -c $< -o $@
 
 compile: clean-intermediate $(object_files)
 
 link: clean-output
 	@mkdir -p $(OUTPUT_DIR)
-	@clang++ $(COMPILER_FLAGS) $(object_files) -o $(OUTPUT_DIR)/$(NAME) -l$(DEPENDENCIES)
+	@g++ $(COMPILER_FLAGS) $(object_files) -o $(OUTPUT_DIR)/$(NAME) -l$(DEPENDENCIES)
 
 build: compile link
 
