@@ -1,0 +1,6 @@
+IMPORTANT!!!!!:
+compile using following command:
+
+docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp gcc:10.5-bullseye make build
+
+gcc:10.5-bullseye is important - it will not work with different versions
