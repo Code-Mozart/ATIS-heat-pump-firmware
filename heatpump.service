@@ -1,0 +1,12 @@
+[Unit]
+Description=heatpump-service
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
+[Service]
+ExecStart=/home/heatpump/heatpump/heat-pump 1234 /home/heatpump/heatpump/token
+User=heatpump
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
