@@ -1,6 +1,6 @@
 # Config
 
-NAME = heat-pump
+NAME = heat-pump-firmware
 INTERMEDIATE_DIR = output/int
 OUTPUT_DIR = output/bin
 
